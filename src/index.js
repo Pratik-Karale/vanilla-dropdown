@@ -8,11 +8,12 @@ function turnToHtml(str){
 }
 
 function addDropDownBtn(){
-    const btn=turnToHtml(`<button class="drop-down-btn">bruh</button>`)
+    const btn=turnToHtml(`<div class="drop-down-btn">bruh</div>`)
     btn.style.height="30px"
     btn.style.position="relative"
-    btn.addEventListener("mouseover",addDropdown)
-    btn.addEventListener("mouseleave",deleteDropdown)
+    // btn.addEventListener("mouseover",addDropdown)
+    addDropdown({target:btn})
+    // btn.addEventListener("mouseleave",deleteDropdown)
     document.body.appendChild(btn)
 }
 
@@ -28,10 +29,11 @@ function addDropDownLinks(dropdownElem,linksObj){
 
 
 function addDropdown(evt){
-    dropdownElem=turnToHtml(`<ul class="dropdown"></ul>`)
+    const dropdownElem=turnToHtml(`<ul class="dropdown"></ul>`)
     dropdownElem.style.position="absolute"
     dropdownElem.style.right=0
-    dropdownElem.style.bottom=10
+    console.log(evt.target.offsetHeight)
+    dropdownElem.style.top=evt.target.offsetHeight
     evt.target.appendChild(dropdownElem)
     console.log("addDropDownBtn")
     addDropDownLinks(dropdownElem,{"yo":"https://google.com","bo":"github.com"})
